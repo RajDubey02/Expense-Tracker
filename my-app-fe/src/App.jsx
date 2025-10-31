@@ -56,7 +56,7 @@ export default function App() {
       <div className="flex pt-16 min-h-screen">
         <Sidebar isOpen={isOpen} close={close} />
         
-        <main className="flex-1 ml-0 md:ml-64 px-6 py-6 bg-gray-50">
+        <main className="flex-1 ml-0 md:ml-64 px-6 py-6 ">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/transactions" element={<Transactions />} />
