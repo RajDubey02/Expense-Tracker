@@ -134,8 +134,8 @@ export default function FinancialSummary() {
     try {
       setLoading(true);
       const res = await getSummary({ months: m, ...f });
-      setRows(res.monthly);
-      setTotals(res.totals);
+      setRows(Array.isArray(res?.monthly) ? res.monthly : []);
+      setTotals(res?.totals || { totalIncome: 0, totalExpense: 0, net: 0 });
       setError('');
     } catch (e) {
       setError('Failed to load summary');
@@ -148,10 +148,11 @@ export default function FinancialSummary() {
 
   const applyFilters = (f) => setFilters(f);
 
+  const safeRows = Array.isArray(rows) ? rows : [];
   const totalRow = {
     label: 'Total',
-    income: rows.reduce((a, b) => a + b.income, 0),
-    expense: rows.reduce((a, b) => a + b.expense, 0),
+    income: safeRows.reduce((a, b) => a + b.income, 0),
+    expense: safeRows.reduce((a, b) => a + b.expense, 0),
   };
   totalRow.net = totalRow.income - totalRow.expense;
 

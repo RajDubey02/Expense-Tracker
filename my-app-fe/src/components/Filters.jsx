@@ -155,18 +155,13 @@ export default function Filters({ value, onApply, onChange, showActions = true }
             <select 
               name="type" 
               value={filters.type} 
-              className="input-field w-full appearance-none cursor-pointer" 
+              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full appearance-none cursor-pointer" 
               onChange={handleChange}
             >
               <option value="">All Types</option>
               <option value="income">💰 Income</option>
               <option value="expense">💸 Expense</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
           </div>
         </div>
 
@@ -178,7 +173,7 @@ export default function Filters({ value, onApply, onChange, showActions = true }
               name="category" 
               value={filters.category} 
               placeholder="Enter category" 
-              className="input-field w-full pl-10" 
+              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
               onChange={handleChange} 
             />
           </div>
@@ -191,7 +186,7 @@ export default function Filters({ value, onApply, onChange, showActions = true }
             <input 
               name="startDate" 
               type="date" 
-              className="input-field w-full pl-10" 
+              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
               value={filters.startDate} 
               onChange={handleChange} 
             />
@@ -205,19 +200,13 @@ export default function Filters({ value, onApply, onChange, showActions = true }
             <input 
               name="endDate" 
               type="date" 
-              className="input-field w-full pl-10" 
+              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
               value={filters.endDate} 
               onChange={handleChange} 
             />
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .input-field {
-          @apply border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400;
-        }
-      `}</style>
     </div>
   );
 }

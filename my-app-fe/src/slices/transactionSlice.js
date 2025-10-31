@@ -44,7 +44,7 @@ const transactionSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchTransactions.fulfilled, (state, action) => {
-        state.list = action.payload;
+        state.list = Array.isArray(action.payload) ? action.payload : [];
         state.loading = false;
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
@@ -52,12 +52,15 @@ const transactionSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addTransaction.fulfilled, (state, action) => {
+        if (!Array.isArray(state.list)) state.list = [];
         state.list.unshift(action.payload);
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
+        if (!Array.isArray(state.list)) state.list = [];
         state.list = state.list.filter(tx => tx._id !== action.payload);
       })
       .addCase(updateTransaction.fulfilled, (state, action) => {
+        if (!Array.isArray(state.list)) state.list = [];
         const idx = state.list.findIndex(tx => tx._id === action.payload._id);
         if (idx !== -1) state.list[idx] = action.payload;
       });

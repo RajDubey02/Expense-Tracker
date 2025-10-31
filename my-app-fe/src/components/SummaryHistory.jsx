@@ -118,6 +118,10 @@ export default function SummaryHistory({ filters }) {
   if (error) return <div className="bg-white p-8 rounded-xl shadow-md text-center text-red-500">{error}</div>;
 
   const { totals, monthly } = data;
+  
+  // Ensure totals has default values
+  const safeTotals = totals || { totalIncome: 0, totalExpense: 0, net: 0 };
+  const safeMonthly = Array.isArray(monthly) ? monthly : [];
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
@@ -168,33 +172,33 @@ export default function SummaryHistory({ filters }) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
           <p className="text-xs uppercase text-green-700 font-semibold tracking-wide mb-1">Total Income</p>
-          <p className="text-2xl font-bold text-green-800">₹{totals.totalIncome.toLocaleString('en-IN')}</p>
+          <p className="text-2xl font-bold text-green-800">₹{safeTotals.totalIncome.toLocaleString('en-IN')}</p>
         </div>
         <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-4">
           <p className="text-xs uppercase text-red-700 font-semibold tracking-wide mb-1">Total Expense</p>
-          <p className="text-2xl font-bold text-red-800">₹{totals.totalExpense.toLocaleString('en-IN')}</p>
+          <p className="text-2xl font-bold text-red-800">₹{safeTotals.totalExpense.toLocaleString('en-IN')}</p>
         </div>
         <div className={`bg-gradient-to-br ${
-          totals.net >= 0 
+          safeTotals.net >= 0 
             ? 'from-blue-50 to-blue-100 border-blue-200' 
             : 'from-orange-50 to-orange-100 border-orange-200'
         } border rounded-lg p-4`}>
           <p className={`text-xs uppercase font-semibold tracking-wide mb-1 ${
-            totals.net >= 0 ? 'text-blue-700' : 'text-orange-700'
+            safeTotals.net >= 0 ? 'text-blue-700' : 'text-orange-700'
           }`}>
             Net Balance
           </p>
           <p className={`text-2xl font-bold ${
-            totals.net >= 0 ? 'text-blue-800' : 'text-orange-800'
+            safeTotals.net >= 0 ? 'text-blue-800' : 'text-orange-800'
           }`}>
-            ₹{totals.net.toLocaleString('en-IN')}
+            ₹{safeTotals.net.toLocaleString('en-IN')}
           </p>
         </div>
       </div>
 
-      <div className="h-80 bg-gray-50 rounded-lg p-4">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={monthly}>
+      <div className="h-80 bg-gray-50 rounded-lg p-4" style={{ minHeight: '320px' }}>
+        <ResponsiveContainer width="100%" height="100%" minHeight={280}>
+          <BarChart data={safeMonthly}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
             <XAxis dataKey="label" stroke="#6b7280" style={{ fontSize: '12px' }} />
             <YAxis stroke="#6b7280" style={{ fontSize: '12px' }} />

@@ -42,16 +42,17 @@
 
 
 
-
-
-
 import { useSelector } from 'react-redux';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
 
 export default function Summary() {
   const { list } = useSelector((state) => state.transaction);
-  const income = list.filter((tx) => tx.type === 'income').reduce((sum, tx) => sum + tx.amount, 0);
-  const expense = list.filter((tx) => tx.type === 'expense').reduce((sum, tx) => sum + tx.amount, 0);
+  
+  // Ensure list is an array before filtering
+  const transactions = Array.isArray(list) ? list : [];
+  
+  const income = transactions.filter((tx) => tx.type === 'income').reduce((sum, tx) => sum + tx.amount, 0);
+  const expense = transactions.filter((tx) => tx.type === 'expense').reduce((sum, tx) => sum + tx.amount, 0);
   const balance = income - expense;
 
   return (

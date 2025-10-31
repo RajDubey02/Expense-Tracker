@@ -167,7 +167,9 @@ export default function TransactionChart() {
   const [range, setRange] = useState('today');
 
   const { income, expense } = useMemo(() => {
-    const filtered = list.filter(tx => isInRange(tx.date, range));
+    // Ensure list is an array before filtering
+    const transactions = Array.isArray(list) ? list : [];
+    const filtered = transactions.filter(tx => isInRange(tx.date, range));
     const income = filtered.filter(x => x.type === 'income').reduce((a, b) => a + b.amount, 0);
     const expense = filtered.filter(x => x.type === 'expense').reduce((a, b) => a + b.amount, 0);
     return { income, expense };
@@ -222,8 +224,8 @@ export default function TransactionChart() {
         </div>
       </div>
 
-      <div className="h-72 bg-gray-50 rounded-lg p-4">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-72 bg-gray-50 rounded-lg p-4" style={{ minHeight: '288px' }}>
+        <ResponsiveContainer width="100%" height="100%" minHeight={250}>
           <PieChart>
             <Pie 
               data={data} 

@@ -184,7 +184,8 @@ import { Trash2, Edit2, Save, X } from 'lucide-react';
 import Filters from '../components/Filters';
 
 export default function Transactions() {
-  const { list, loading, error } = useSelector(state => state.transaction);
+  const { list: rawList, loading, error } = useSelector(state => state.transaction);
+  const list = Array.isArray(rawList) ? rawList : [];
   const dispatch = useDispatch();
   const [editingId, setEditingId] = useState(null);
   const [edit, setEdit] = useState({ description: '', amount: '', category: '', type: 'expense', date: '' });
@@ -229,8 +230,13 @@ export default function Transactions() {
     setPage(1);
   };
 
-  const totalPages = useMemo(() => Math.max(1, Math.ceil(list.length / pageSize)), [list.length]);
+  const totalPages = useMemo(() => {
+    if (!Array.isArray(list)) return 1;
+    return Math.max(1, Math.ceil(list.length / pageSize));
+  }, [list]);
+
   const paged = useMemo(() => {
+    if (!Array.isArray(list)) return [];
     const start = (page - 1) * pageSize;
     return list.slice(start, start + pageSize);
   }, [list, page]);
