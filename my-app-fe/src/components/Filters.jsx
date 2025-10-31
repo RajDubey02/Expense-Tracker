@@ -87,6 +87,151 @@
 
 
 
+// import { useState, useEffect } from 'react';
+// import { Filter, Calendar, Tag } from 'lucide-react';
+
+// export default function Filters({ value, onApply, onChange, showActions = true }) {
+//   const [filters, setFilters] = useState(value || { type: '', category: '', startDate: '', endDate: '' });
+
+//   useEffect(() => {
+//     if (value) setFilters(value);
+//   }, [value]);
+
+//   const apply = (f) => onApply && onApply(f);
+
+//   const handleChange = e => {
+//     const next = { ...filters, [e.target.name]: e.target.value };
+//     setFilters(next);
+//     onChange && onChange(next);
+//   };
+
+//   const applyFilters = () => {
+//     if (filters.startDate && filters.endDate && filters.startDate > filters.endDate) {
+//       const next = { ...filters, startDate: filters.endDate, endDate: filters.startDate };
+//       setFilters(next);
+//       apply(next);
+//       return;
+//     }
+//     apply(filters);
+//   };
+
+//   const clearFilters = () => {
+//     const cleared = { type: '', category: '', startDate: '', endDate: '' };
+//     setFilters(cleared);
+//     apply(cleared);
+//     onChange && onChange(cleared);
+//   };
+
+//   return (
+//     <div className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-lg rounded-2xl p-5 mb-6">
+//       <div className="flex items-center justify-between mb-4">
+//         <div className="flex items-center gap-2">
+//           <Filter className="w-5 h-5 text-blue-600" />
+//           <span className="text-lg font-bold text-gray-800">Filters</span>
+//         </div>
+        
+//         {showActions && (
+//           <div className="flex gap-2">
+//             <button 
+//               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-5 py-2 rounded-xl text-white text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5" 
+//               onClick={applyFilters}
+//             >
+//               Apply
+//             </button>
+//             <button 
+//               className="bg-white border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 px-5 py-2 rounded-xl text-gray-700 text-sm font-semibold transition-all duration-200" 
+//               onClick={clearFilters}
+//             >
+//               Clear
+//             </button>
+//           </div>
+//         )}
+//       </div>
+      
+//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+//         <div className="relative">
+//           <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Type</label>
+//           <div className="relative">
+//             <select 
+//               name="type" 
+//               value={filters.type} 
+//               className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full appearance-none cursor-pointer" 
+//               onChange={handleChange}
+//             >
+//               <option value="">All Types</option>
+//               <option value="income">💰 Income</option>
+//               <option value="expense">💸 Expense</option>
+//             </select>
+//           </div>
+//         </div>
+
+//         <div className="relative">
+//           <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Category</label>
+//           <div className="relative">
+//             <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+//             <input 
+//               name="category" 
+//               value={filters.category} 
+//               placeholder="Enter category" 
+//               className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
+//               onChange={handleChange} 
+//             />
+//           </div>
+//         </div>
+
+//         <div className="relative">
+//           <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Start Date</label>
+//           <div className="relative">
+//             <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+//             <input 
+//               name="startDate" 
+//               type="date" 
+//               className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
+//               value={filters.startDate} 
+//               onChange={handleChange} 
+//             />
+//           </div>
+//         </div>
+
+//         <div className="relative">
+//           <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">End Date</label>
+//           <div className="relative">
+//             <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+//             <input 
+//               name="endDate" 
+//               type="date" 
+//               className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
+//               value={filters.endDate} 
+//               onChange={handleChange} 
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { useState, useEffect } from 'react';
 import { Filter, Calendar, Tag } from 'lucide-react';
 
@@ -123,23 +268,24 @@ export default function Filters({ value, onApply, onChange, showActions = true }
   };
 
   return (
-    <div className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-lg rounded-2xl p-5 mb-6">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-lg rounded-2xl p-4 sm:p-5 mb-6">
+      {/* Header: Title + Buttons */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-blue-600" />
           <span className="text-lg font-bold text-gray-800">Filters</span>
         </div>
-        
+
         {showActions && (
-          <div className="flex gap-2">
-            <button 
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-5 py-2 rounded-xl text-white text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5" 
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <button
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-4 py-2 rounded-xl text-white text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 w-full sm:w-auto"
               onClick={applyFilters}
             >
               Apply
             </button>
-            <button 
-              className="bg-white border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 px-5 py-2 rounded-xl text-gray-700 text-sm font-semibold transition-all duration-200" 
+            <button
+              className="bg-white border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 px-4 py-2 rounded-xl text-gray-700 text-sm font-semibold transition-all duration-200 w-full sm:w-auto"
               onClick={clearFilters}
             >
               Clear
@@ -147,64 +293,61 @@ export default function Filters({ value, onApply, onChange, showActions = true }
           </div>
         )}
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="relative">
-          <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Type</label>
-          <div className="relative">
-            <select 
-              name="type" 
-              value={filters.type} 
-              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full appearance-none cursor-pointer" 
-              onChange={handleChange}
-            >
-              <option value="">All Types</option>
-              <option value="income">💰 Income</option>
-              <option value="expense">💸 Expense</option>
-            </select>
-          </div>
+
+      {/* Filter Fields - Responsive Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {/* Type */}
+        <div>
+          <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wide">Type</label>
+          <select
+            name="type"
+            value={filters.type}
+            className="border-2 border-gray-300 rounded-xl px-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full appearance-none cursor-pointer"
+            onChange={handleChange}
+          >
+            <option value="">All Types</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
         </div>
 
+        {/* Category */}
         <div className="relative">
-          <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Category</label>
-          <div className="relative">
-            <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input 
-              name="category" 
-              value={filters.category} 
-              placeholder="Enter category" 
-              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
-              onChange={handleChange} 
-            />
-          </div>
+          <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wide">Category</label>
+          <Tag className="absolute left-3 top-9 w-4 h-4 text-gray-400 pointer-events-none z-10" />
+          <input
+            name="category"
+            value={filters.category}
+            placeholder="Enter category"
+            className="border-2 border-gray-300 rounded-xl pl-10 pr-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full"
+            onChange={handleChange}
+          />
         </div>
 
+        {/* Start Date */}
         <div className="relative">
-          <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Start Date</label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-            <input 
-              name="startDate" 
-              type="date" 
-              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
-              value={filters.startDate} 
-              onChange={handleChange} 
-            />
-          </div>
+          <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wide">Start Date</label>
+          <Calendar className="absolute left-3 top-9 w-4 h-4 text-gray-400 pointer-events-none z-10" />
+          <input
+            name="startDate"
+            type="date"
+            className="border-2 border-gray-300 rounded-xl pl-10 pr-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full"
+            value={filters.startDate}
+            onChange={handleChange}
+          />
         </div>
 
+        {/* End Date */}
         <div className="relative">
-          <label className="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">End Date</label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-            <input 
-              name="endDate" 
-              type="date" 
-              className="border-2 border-gray-300 rounded-xl px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full pl-10" 
-              value={filters.endDate} 
-              onChange={handleChange} 
-            />
-          </div>
+          <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wide">End Date</label>
+          <Calendar className="absolute left-3 top-9 w-4 h-4 text-gray-400 pointer-events-none z-10" />
+          <input
+            name="endDate"
+            type="date"
+            className="border-2 border-gray-300 rounded-xl pl-10 pr-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm transition-all duration-200 outline-none bg-white shadow-sm hover:border-gray-400 w-full"
+            value={filters.endDate}
+            onChange={handleChange}
+          />
         </div>
       </div>
     </div>
