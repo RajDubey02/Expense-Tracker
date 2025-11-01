@@ -40,6 +40,7 @@ import Dashboard from "./pages/Dashboard";
 import Transactions from "./pages/Transactions";
 import AddTransaction from "./pages/AddTransaction";
 import FinancialSummary from "./pages/FinancialSummary";
+import BulkUpload from "./pages/BulkUpload";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -62,6 +63,7 @@ export default function App() {
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/add" element={<AddTransaction />} />
             <Route path="/summary" element={<FinancialSummary />} />
+            <Route path="/bulk-upload" element={<BulkUpload />} />
           </Routes>
         </main>
       </div>

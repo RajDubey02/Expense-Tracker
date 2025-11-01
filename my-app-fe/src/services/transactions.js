@@ -27,13 +27,17 @@ export async function deleteTransactionById(id) {
 }
 
 export async function getSummary(params = {}) {
-  const search = new URLSearchParams();
-  if (params.months) search.set('months', String(params.months));
-  if (params.type) search.set('type', params.type);
-  if (params.category) search.set('category', params.category);
-  if (params.startDate) search.set('startDate', params.startDate);
-  if (params.endDate) search.set('endDate', params.endDate);
-  const url = search.toString() ? `/transactions/summary?${search.toString()}` : '/transactions/summary';
-  const res = await api.get(url);
+  const queryParams = new URLSearchParams(params);
+  const res = await api.get(`/transactions/summary?${queryParams}`);
+  return res.data;
+}
+
+export async function uploadBulkTransactions(formData) {
+  const res = await api.post('/transactions/bulk-upload', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  });
   return res.data;
 }

@@ -75,13 +75,14 @@
 
 
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Receipt, TrendingUp, Plus } from "lucide-react";
+import { LayoutDashboard, Receipt, TrendingUp, Plus, Upload } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", path: "/", icon: LayoutDashboard },
   { label: "Transactions", path: "/transactions", icon: Receipt },
   { label: "Financial Summary", path: "/summary", icon: TrendingUp },
-  { label: "Add Transaction", path: "/add", icon: Plus }
+  { label: "Add Transaction", path: "/add", icon: Plus },
+  { label: "Bulk Upload", path: "/bulk-upload", icon: Upload }
 ];
 
 export default function Sidebar({ isOpen, close }) {
