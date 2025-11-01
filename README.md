@@ -5,18 +5,32 @@ A full-stack expense tracking application that helps users manage their personal
 
 ## 🚀 Features
 
-### Frontend (React)
-- **Dashboard**: Overview of financial status
-- **Transaction Management**: Add, edit, delete transactions
-- **Bulk Upload**: Upload multiple transactions via Excel/CSV
-- **Financial Summary**: Visual representation of expenses/income
-- **State Management with Redux**:
-  - Centralized state management for transactions data
-  - Efficient data flow between components
-  - Predictable state updates
-  - Handles all CRUD operations
-  - Manages loading and error states
-- **Responsive Design**: Works on all devices
+### Core Features
+- **Dashboard**: Overview of financial status with visual charts
+- **Transaction Management**: Add, edit, delete transactions with ease
+- **Financial Summary**: Detailed breakdown of income vs expenses
+- **Responsive Design**: Works seamlessly on all devices
+
+### ✨ Enhanced Features (New!)
+- **Bulk Upload** 📤
+  - Upload multiple transactions at once using Excel/CSV files
+  - Download template for easy data entry
+  - Preview data before final submission
+  - Automatic validation of file format and required fields
+  - Progress tracking during upload
+
+- **Advanced Transaction Table** 📊
+  - Sort transactions by any column (click on column headers)
+  - Clean, modern UI with hover effects
+  - Inline editing with modal form
+  - Confirmation dialogs for delete actions
+  - Pagination with smart page navigation
+
+- **State Management with Redux**
+  - Centralized state management
+  - Optimized re-renders for better performance
+  - Persistent state across navigation
+  - Error handling and loading states
 
 ### Backend (Node.js + Express + MongoDB)
 - **RESTful API**: For all CRUD operations
@@ -69,12 +83,31 @@ Backend/
 └── server.js      # Server entry point
 ```
 
-## 🚀 Setup Instructions
+## 🛠️ Setup Instructions
 
 ### Prerequisites
 - Node.js (v14+)
 - MongoDB (local or Atlas)
 - npm or yarn
+
+### Environment Setup
+1. Copy `.env.example` to `.env` in the root directory of backend:
+   ```bash
+   cp .env.example .env
+   ```
+2. Update the `.env` file with your configuration:
+   ```env
+   # MongoDB Connection String
+   MONGODB_URI=mongodb+srv://rajdubey76890_db_user:root123@expensetracker.ulsljwu.mongodb.net/?appName=ExpenseTracker
+   
+   # Server Port
+   PORT=5000
+   
+
+   # File Upload Settings
+   MAX_FILE_SIZE=5 # in MB
+   ALLOWED_FILE_TYPES=.xlsx,.xls,.csv
+   ```
 
 ### Backend Setup
 1. Navigate to the backend directory:
@@ -85,14 +118,9 @@ Backend/
    ```bash
    npm install
    ```
-3. Create a `.env` file with:
-   ```
-   MONGODB_URI=your_mongodb_connection_string
-   PORT=5000
-   ```
-4. Start the server:
+3. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### Frontend Setup
@@ -108,24 +136,41 @@ Backend/
    ```bash
    npm run dev
    ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-## 🔄 Bulk Upload Feature
+## 🔄 Bulk Upload Guide
 
-### How It Works
-1. **File Upload**: Users can upload Excel/CSV files
-2. **Validation**: File is validated for format and required fields
-3. **Preview**: Users can review data before submission
-4. **Processing**: Backend processes and saves transactions
-5. **Feedback**: Success/error messages are displayed
+### How to Use Bulk Upload
+1. **Download Template**
+   - Click "Download Template" to get the properly formatted Excel file
+   - Fill in your transaction data following the format
 
-### Required File Format
+2. **File Requirements**
+   - Supported formats: .xlsx, .xls, .csv
+   - Maximum file size: 5MB
+   - Required columns: type, amount, description, category, date
+
+3. **Upload Process**
+   - Click "Upload File" and select your file
+   - Preview the data before final submission
+   - Click "Confirm Upload" to process
+   - Track progress with the upload indicator
+
+### File Format Example
 ```
-| type  | amount | description | category | date       |
-|-------|--------|-------------|----------|------------|
-| income| 1000   | Salary      | Salary   | 2023-01-01 |
-| expense| 50    | Groceries   | Food     | 2023-01-02 |
+| type    | amount | description     | category | date       |
+|---------|--------|-----------------|----------|------------|
+| income  | 50000  | Monthly Salary  | Salary   | 2023-11-01 |
+| expense | 1500   | Groceries       | Food     | 2023-11-02 |
+| expense | 200    | Mobile Recharge | Bills    | 2023-11-03 |
 ```
+
+### Validation Rules
+- `type`: Must be either 'income' or 'expense'
+- `amount`: Must be a positive number
+- `description`: Required, max 200 characters
+- `category`: Required, will be created if doesn't exist
+- `date`: Must be in YYYY-MM-DD format
 
 ## 📝 API Endpoints
 

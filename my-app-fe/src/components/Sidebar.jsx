@@ -100,7 +100,7 @@ export default function Sidebar({ isOpen, close }) {
         }`}
         onClick={close}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50" onClick={close} />
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm bg-opacity-10" onClick={close} />
 
         <aside
           className={`fixed top-16 left-0 bottom-0 w-64 bg-white shadow-xl flex flex-col transform transition-transform duration-300 ease-in-out ${
